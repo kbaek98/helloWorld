@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block page_title %}Contact{% endblock %}
+{% block page_head %}Contact{% endblock %}
+{% block page_content %}
+    {% if form_submitted %}
+    <div class="col-12">
+        <h2>Thank you for submitting!</h2>
+    </div>
+    <div class="col-md-6">
+        <p>First Name:</p>
+    </div>
+    <div class="col-md-6">
+        <p>{{ request.form.get('first_name') }}</p>
+    </div>
+    <div class="col-md-6">
+        <p>Middle Name:</p>
+    </div>
+    <div class="col-md-6">
+        <p>{{ request.form.get('middle_name') }}</p>
+    </div>
+    <div class="col-md-6">
+        <p>Last Name:</p>
+    </div>
+    <div class="col-md-6">
+        <p>{{ request.form.get('last_name') }}</p>
+    </div>
+    <div class="col-md-6">
+        <p>Email:</p>
+    </div>
+    <div class="col-md-6">
+        <p>{{ request.form.get('email') }}</p>
+    </div>
+
+    <p><a href="{{ url_for('contact') }}">Complete form again</a></p>
+    {% else %}
+    <form class="row g-3" action="{{ url_for('contact') }}" method="post">
+        <div class="col-md-4">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="first_name" name="first_name">
+        </div>
+        <div class="col-md-4">
+            <label for="middle_name" class="form-label">Middle Name</label>
+            <input type="text" class="form-control" id="middle_name" name="middle_name">
+        </div>
+        <div class="col-md-4">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name">
+        </div>
+        <div class="col-12">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+    {% endif %}
+{% endblock %}
